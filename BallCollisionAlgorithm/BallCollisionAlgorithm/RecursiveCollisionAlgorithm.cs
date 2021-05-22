@@ -33,13 +33,14 @@ namespace BallCollisionAlgorithm
             widestAxis = GetWidestRangeAxis(ballsPrim, usedAxises, axisCheck);
             usedAxises.Add(widestAxis);
 
-            orderedBalls = ballsPrim.OrderBy(b => b.GetByAxis(widestAxis)).ToList();
-            L = orderedBalls.GetRange(0, orderedBalls.Count / 2);
-            R = orderedBalls.GetRange(orderedBalls.Count / 2, orderedBalls.Count - L.Count);
-            collisions.AddRange(Solve(L));
-            collisions.AddRange(Solve(R));
+            var orderedBallsPrim = ballsPrim.OrderBy(b => b.GetByAxis(widestAxis)).ToList();
+            var LPrim = orderedBallsPrim.GetRange(0, orderedBallsPrim.Count / 2);
+            var RPrim = orderedBallsPrim.GetRange(orderedBallsPrim.Count / 2, orderedBallsPrim.Count - LPrim.Count);
+            // The tricky part, if uncommented the duplicates will happen
+            //collisions.AddRange(Solve(L));
+            //collisions.AddRange(Solve(R));
 
-            var ballsBis = orderedBalls.Where(b => Math.Abs(b.GetByAxis(widestAxis) - L.Last().GetByAxis(widestAxis)) <= 2).ToList();
+            var ballsBis = orderedBallsPrim.Where(b => Math.Abs(b.GetByAxis(widestAxis) - LPrim.Last().GetByAxis(widestAxis)) <= 2).ToList();
             if (ballsBis.Count <= 1)
             {
                 return collisions;
@@ -59,21 +60,38 @@ namespace BallCollisionAlgorithm
                 axis = "Z";
             }
 
-            orderedBalls = ballsBis.OrderBy(b => b.GetByAxis(axis)).ToList();
+            orderedBallsPrim = ballsBis.OrderBy(b => b.GetByAxis(axis)).ToList();
             Ball ball1;
             Ball ball2;
-            for(int i = 0; i < orderedBalls.Count; i++)
-            {
-                for(int j = i + 1; j < orderedBalls.Count; j++)
-                {
-                    ball1 = orderedBalls[i];
-                    ball2 = orderedBalls[j];
-                    if (Math.Abs(ball1.GetByAxis(axis) - ball2.GetByAxis(axis)) > 2)
-                    {
-                        break;
-                    }
 
-                    if(ball1.DistanceTo(ball2) <= 2)
+            // Better version if we can distinguish balls from L and balls from R
+            //for(int i = 0; i < orderedBalls.Count; i++)
+            //{
+            //    for(int j = i + 1; j < orderedBalls.Count; j++)
+            //    {
+            //        ball1 = orderedBalls[i];
+            //        ball2 = orderedBalls[j];
+            //        if (Math.Abs(ball1.GetByAxis(axis) - ball2.GetByAxis(axis)) > 2)
+            //        {
+            //            break;
+            //        }
+
+            //        if(ball1.DistanceTo(ball2) <= 2)
+            //        {
+            //            collisions.Add((ball1, ball2));
+            //        }
+            //    }
+            //}
+
+            // Worse but works for now
+            for (int i = 0; i < LPrim.Count; i++)
+            {
+                for(int j = 0; j < RPrim.Count; j++)
+                {
+                    ball1 = LPrim[i];
+                    ball2 = RPrim[j];
+
+                    if (ball1.DistanceTo(ball2) <= 2)
                     {
                         collisions.Add((ball1, ball2));
                     }

@@ -10,8 +10,8 @@ namespace BallCollisionAlgorithm
         static void Main(string[] args)
         {
             var min = 0;
-            var max = 1000000.0;
-            var count = 100000;
+            var max = 10.0;
+            var count = 1000;
             var balls = new List<Ball>()
             {
                 //new Ball(1, 2, 3),
@@ -24,7 +24,7 @@ namespace BallCollisionAlgorithm
                 //new Ball(5, 5, 5),
             };
 
-            var random = new Random(1);
+            var random = new Random();
             var sw = new Stopwatch();
              
 

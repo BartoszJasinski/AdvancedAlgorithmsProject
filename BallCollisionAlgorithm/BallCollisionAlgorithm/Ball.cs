@@ -20,8 +20,6 @@ namespace BallCollisionAlgorithm
 
         public double Z { get; set; }
 
-        internal Stack<BallPart> Part = new Stack<BallPart>();
-
         public double DistanceTo(Ball otherBall)
         {
             var x = Math.Pow(otherBall.X - this.X, 2);
