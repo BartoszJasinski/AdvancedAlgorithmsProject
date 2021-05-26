@@ -26,13 +26,9 @@ namespace BallCollisionAlgorithm
 
             var random = new Random();
             var sw = new Stopwatch();
-             
 
-            for (int i = 0; i < count; i++)
-            {
-                //balls.Add(new Ball(1, 1, 1));
-                balls.Add(new Ball(random.NextDouble(min, max), random.NextDouble(min, max), random.NextDouble(min, max)));
-            }
+
+            balls = BallGenerator.GenerateBalls(5, 12, 42, 10000);
 
 
             Console.WriteLine("Recursive:");
