@@ -18,9 +18,11 @@ namespace BallCollisionAlgorithm
 //            }
 
 
-            var min = 0;
-            var max = 10.0;
-            var count = 1000;
+            var x = 5;
+            var y = 12;
+			var z = 42;
+            var count = 10000;
+
             var balls = new List<Ball>()
             {
                 //new Ball(1, 2, 3),
@@ -37,7 +39,7 @@ namespace BallCollisionAlgorithm
             var sw = new Stopwatch();
 
 
-            balls = BallGenerator.GenerateBalls(5, 12, 42, 10000);
+            balls = BallGenerator.GenerateBalls(x, y, z, count);
 
 
             Console.WriteLine("Recursive:");
