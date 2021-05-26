@@ -9,6 +9,15 @@ namespace BallCollisionAlgorithm
     {
         static void Main(string[] args)
         {
+//			********BELOW LINES ARE FOR TESTS OF FILE READER, DELETE AFTER TESTS********
+//            var bals = FileReader.ReadFile("bals");
+//
+//           foreach (var bal in bals)
+//            {
+//                Console.WriteLine(bal.X + " " + bal.Y + " " + bal.Z);
+//            }
+
+
             var min = 0;
             var max = 10.0;
             var count = 1000;
