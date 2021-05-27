@@ -9,58 +9,58 @@ namespace BallCollisionAlgorithm
     {
         static void Main(string[] args)
         {
-//			********BELOW LINES ARE FOR TESTS OF FILE READER, DELETE AFTER TESTS********
-//            var bals = FileReader.ReadFile("bals");
-//
-//           foreach (var bal in bals)
-//            {
-//                Console.WriteLine(bal.X + " " + bal.Y + " " + bal.Z);
-//            }
+            //			********BELOW LINES ARE FOR TESTS OF FILE READER, DELETE AFTER TESTS********
+            var bals = FileReader.ReadFile("balls");
 
-
-            var x = 5;
-            var y = 12;
-			var z = 42;
-            var count = 10000;
-
-            var balls = new List<Ball>()
+            foreach (var bal in bals)
             {
-                //new Ball(1, 2, 3),
-                //new Ball(0.5, 2.3, 0),
-                //new Ball(1, 2, 5),
-                //new Ball(1, 2, 4),
-                //new Ball(100000, 20, 1),
-                //new Ball(300000, 1, 3),
-                //new Ball(2, 2, 2),
-                //new Ball(5, 5, 5),
-            };
-
-            var random = new Random();
-            var sw = new Stopwatch();
+                Console.WriteLine(bal.X + " " + bal.Y + " " + bal.Z);
+            }
 
 
-            balls = BallGenerator.GenerateBalls(x, y, z, count);
+   //         var x = 5;
+   //         var y = 12;
+			//var z = 42;
+   //         var count = 10000;
+
+   //         var balls = new List<Ball>()
+   //         {
+   //             //new Ball(1, 2, 3),
+   //             //new Ball(0.5, 2.3, 0),
+   //             //new Ball(1, 2, 5),
+   //             //new Ball(1, 2, 4),
+   //             //new Ball(100000, 20, 1),
+   //             //new Ball(300000, 1, 3),
+   //             //new Ball(2, 2, 2),
+   //             //new Ball(5, 5, 5),
+   //         };
+
+   //         var random = new Random();
+   //         var sw = new Stopwatch();
 
 
-            Console.WriteLine("Recursive:");
-            sw.Start();
-            var pairs = RecursiveCollisionAlgorithm.Solve(balls, true);
-            sw.Stop();
-            Console.WriteLine("Count: " + pairs.Count + ", elapsed time: " + sw.ElapsedMilliseconds + "ms");
+   //         balls = BallGenerator.GenerateBalls(x, y, z, count);
 
 
-            Console.WriteLine("Recursive without axis:");
-            sw.Start();
-            pairs = RecursiveCollisionAlgorithm.Solve(balls, false);
-            sw.Stop();
-            Console.WriteLine("Count: " + pairs.Count + ", elapsed time: " + sw.ElapsedMilliseconds + "ms");
+   //         Console.WriteLine("Recursive:");
+   //         sw.Start();
+   //         var pairs = RecursiveCollisionAlgorithm.Solve(balls, true);
+   //         sw.Stop();
+   //         Console.WriteLine("Count: " + pairs.Count + ", elapsed time: " + sw.ElapsedMilliseconds + "ms");
 
-            Console.WriteLine("Bruteforce:");
-            sw.Reset();
-            sw.Start();
-             pairs = BruteforceCollisionAlgorithm.Solve(balls).OrderBy(x => x.Item1.X).ToList();
-            sw.Stop();
-            Console.WriteLine("Count: " + pairs.Count + ", elapsed time: " + sw.ElapsedMilliseconds + "ms");
+
+   //         Console.WriteLine("Recursive without axis:");
+   //         sw.Start();
+   //         pairs = RecursiveCollisionAlgorithm.Solve(balls, false);
+   //         sw.Stop();
+   //         Console.WriteLine("Count: " + pairs.Count + ", elapsed time: " + sw.ElapsedMilliseconds + "ms");
+
+   //         Console.WriteLine("Bruteforce:");
+   //         sw.Reset();
+   //         sw.Start();
+   //          pairs = BruteforceCollisionAlgorithm.Solve(balls).OrderBy(x => x.Item1.X).ToList();
+   //         sw.Stop();
+   //         Console.WriteLine("Count: " + pairs.Count + ", elapsed time: " + sw.ElapsedMilliseconds + "ms");
             //pairs.ForEach(x =>
             //{
             //    Console.WriteLine($"{x.Item1} - {x.Item2}, dist: {x.Item1.DistanceTo(x.Item2)}");
