@@ -9,16 +9,20 @@ namespace BallCollisionAlgorithm
     {
         static void Main(string[] args)
         {
+						//			********BELOW LINES ARE FOR RUNNING COMMAND LINE INTERFACE********
+					            return new AppRunner<Cli>().Run(args);
+
+
 			//			********BELOW LINES ARE FOR TESTS OF FILE WRITER, DELETE AFTER TESTS********
-            FileWriter.GenerateFile(10, 10, 10, 10, "ballsWriter");
+ //           FileWriter.GenerateFile(10, 10, 10, 10, "ballsWriter");
 
             //			********BELOW LINES ARE FOR TESTS OF FILE READER, DELETE AFTER TESTS********
-            var bals = FileReader.ReadFile("ballsWriter");
+   //         var bals = FileReader.ReadFile("ballsWriter");
 
-            foreach (var bal in bals)
-            {
-                Console.WriteLine(bal.X + " " + bal.Y + " " + bal.Z);
-            }
+     //       foreach (var bal in bals)
+       //     {
+         //       Console.WriteLine(bal.X + " " + bal.Y + " " + bal.Z);
+           // }
 
 
    //         var x = 5;
