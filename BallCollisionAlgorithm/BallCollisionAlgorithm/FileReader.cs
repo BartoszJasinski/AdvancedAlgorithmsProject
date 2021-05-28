@@ -6,7 +6,7 @@ namespace BallCollisionAlgorithm
 {
     public static class FileReader
     {
-        public static List<Ball> ReadFile(string fileName)
+        public static IEnumerable<Ball> ReadFile(string fileName)
         {
             var envSlashSetting = "\\";
             if(Environment.OSVersion.Platform == PlatformID.Unix)
@@ -21,7 +21,7 @@ namespace BallCollisionAlgorithm
 
         }
 
-        private static List<Ball> ParseFile(string filePath)
+        private static IEnumerable<Ball> ParseFile(string filePath)
         {
             var fileLines = File.ReadAllLines(filePath + ".bls");
 

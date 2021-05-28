@@ -9,8 +9,11 @@ namespace BallCollisionAlgorithm
     {
         static void Main(string[] args)
         {
+			//			********BELOW LINES ARE FOR TESTS OF FILE WRITER, DELETE AFTER TESTS********
+            FileWriter.GenerateFile(10, 10, 10, 10, "ballsWriter");
+
             //			********BELOW LINES ARE FOR TESTS OF FILE READER, DELETE AFTER TESTS********
-            var bals = FileReader.ReadFile("balls");
+            var bals = FileReader.ReadFile("ballsWriter");
 
             foreach (var bal in bals)
             {

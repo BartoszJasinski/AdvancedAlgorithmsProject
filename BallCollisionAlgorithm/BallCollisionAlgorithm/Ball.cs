@@ -5,13 +5,13 @@ using System.Text;
 
 namespace BallCollisionAlgorithm
 {
-    public class Ball
+ 	public class Ball
     {
         public Ball(double x, double y, double z)
         {
-            this.X = x;
-            this.Y = y;
-            this.Z = z;
+            X = x;
+            Y = y;
+            Z = z;
         }
 
         public double X { get; set; }
@@ -22,9 +22,9 @@ namespace BallCollisionAlgorithm
 
         public double DistanceTo(Ball otherBall)
         {
-            var x = Math.Pow(otherBall.X - this.X, 2);
-            var y = Math.Pow(otherBall.Y - this.Y, 2);
-            var z = Math.Pow(otherBall.Z - this.Z, 2);
+            var x = Math.Pow(otherBall.X - X, 2);
+            var y = Math.Pow(otherBall.Y - Y, 2);
+            var z = Math.Pow(otherBall.Z - Z, 2);
             return Math.Sqrt(x + y + z);
         }
 
@@ -39,11 +39,11 @@ namespace BallCollisionAlgorithm
             switch(axisUpper)
             {
                 case "X":
-                    return this.X;
+                    return X;
                 case "Y":
-                    return this.Y;
+                    return Y;
                 case "Z":
-                    return this.Z;
+                    return Z;
                 default:
                     throw new ArgumentException();
             }
@@ -51,11 +51,11 @@ namespace BallCollisionAlgorithm
 
         public bool Equals(Ball other)
         {
-            if (Object.ReferenceEquals(other, null)) return false;
-            if (Object.ReferenceEquals(this, other)) return true;
-            return this.X.Equals(other.X) && this.Y.Equals(other.Y) && this.Z.Equals(other.Z);
+            if (ReferenceEquals(other, null)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return X.Equals(other.X) && Y.Equals(other.Y) && Z.Equals(other.Z);
         }
 
-        public override string ToString() => $"({this.X}, {this.Y}, {this.Z})";
+        public override string ToString() => $"{X.ToString(CultureInfo.InvariantCulture)} {Y.ToString(CultureInfo.InvariantCulture)} {Z.ToString(CultureInfo.InvariantCulture)}";
     }
 }
