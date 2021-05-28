@@ -4,7 +4,7 @@ using System.IO;
 
 namespace BallCollisionAlgorithm
 {
-    public class FileReader
+    public static class FileReader
     {
         public static List<Ball> ReadFile(string fileName)
         {
@@ -23,15 +23,14 @@ namespace BallCollisionAlgorithm
 
         private static List<Ball> ParseFile(string filePath)
         {
-            var balls = new List<Ball>();
             var fileLines = File.ReadAllLines(filePath + ".bls");
-            foreach (var fileLine in fileLines)
-            {
-                var splittedLine = fileLine.Split();
-                balls.Add(new Ball(Double.Parse(splittedLine[0]), Double.Parse(splittedLine[1]), Double.Parse(splittedLine[2])));
-            }
 
-            return balls;
+            return fileLines.Select(fileLine => fileLine.Split()).Select(splittedLine => new Ball(ParseNumber(splittedLine[0]), ParseNumber(splittedLine[1]), ParseNumber(splittedLine[2]))).ToList();
+        }
+
+        private static double ParseNumber(string number)
+        {
+            return double.Parse(number, CultureInfo.InvariantCulture);
         }
     }
 }
