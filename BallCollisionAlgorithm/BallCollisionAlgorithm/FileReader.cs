@@ -1,31 +1,29 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
+using System.Linq;
 
 namespace BallCollisionAlgorithm
 {
     public static class FileReader
     {
-        public static IEnumerable<Ball> ReadFile(string fileName)
+        public static IEnumerable<Ball> ReadFile(string filePath)
         {
-            var envSlashSetting = "\\";
-            if(Environment.OSVersion.Platform == PlatformID.Unix)
+            if (!filePath.EndsWith(".txt"))
             {
-                envSlashSetting = "/";
+                filePath += ".txt";
             }
 
-            var directory = Directory.GetCurrentDirectory();
-            var filePath = directory + envSlashSetting + fileName;
+            var fileLines = File.ReadAllLines(filePath);
 
-            return ParseFile(filePath);
-
-        }
-
-        private static IEnumerable<Ball> ParseFile(string filePath)
-        {
-            var fileLines = File.ReadAllLines(filePath + ".bls");
-
-            return fileLines.Select(fileLine => fileLine.Split()).Select(splittedLine => new Ball(ParseNumber(splittedLine[0]), ParseNumber(splittedLine[1]), ParseNumber(splittedLine[2]))).ToList();
+            return fileLines
+                .Select(fileLine => fileLine.Split())
+                .Select(splittedLine => new Ball(
+                    ParseNumber(splittedLine[0]),
+                    ParseNumber(splittedLine[1]),
+                    ParseNumber(splittedLine[2])))
+                .ToList();
         }
 
         private static double ParseNumber(string number)

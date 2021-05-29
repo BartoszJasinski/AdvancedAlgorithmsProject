@@ -84,12 +84,12 @@ namespace BallCollisionAlgorithm
             //}
 
             // Worse but works for now
-            for (int i = 0; i < LPrim.Count; i++)
+            for (int i = 0; i < L.Count; i++)
             {
-                for(int j = 0; j < RPrim.Count; j++)
+                for(int j = 0; j < R.Count; j++)
                 {
-                    ball1 = LPrim[i];
-                    ball2 = RPrim[j];
+                    ball1 = L[i];
+                    ball2 = R[j];
 
                     if (ball1.DistanceTo(ball2) <= 2)
                     {

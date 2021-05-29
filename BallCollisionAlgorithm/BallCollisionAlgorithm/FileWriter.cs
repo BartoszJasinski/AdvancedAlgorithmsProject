@@ -1,34 +1,26 @@
+using System.IO;
+using System.Linq;
+
 namespace BallCollisionAlgorithm
 {
     public static class FileWriter
     {
-        public static void GenerateFile(double x, double y, double z, int numberOfBalls, string fileName)
+        public static void GenerateFile(double x, double y, double z, int numberOfBalls, string filePath)
         {
-            var envSlashSetting = "\\";
-            if(Environment.OSVersion.Platform == PlatformID.Unix)
+            if (!filePath.EndsWith(".txt"))
             {
-                envSlashSetting = "/";
+                filePath += ".txt";
             }
 
-            var directory = Directory.GetCurrentDirectory();
-            var filePath = directory + envSlashSetting + fileName + ".bls";
-            
             File.WriteAllLines(filePath, GenerateFileText(x, y, z, numberOfBalls));
         }
 
         private static string[] GenerateFileText(double x, double y, double z, int numberOfBalls)
         {
-            var balls = BallGenerator.GenerateBalls(x, y, z, numberOfBalls);
-            var fileText = new string[numberOfBalls];
-            var i = 0;
-            foreach (var ball in balls)
-            {
-                fileText[i] += ball.ToString();
-                i++;
-            }
-
-            return fileText;
+            return BallGenerator
+                .GenerateBalls(x, y, z, numberOfBalls)
+                .Select(b => b.ToString())
+                .ToArray();
         }
-
     }
 }
