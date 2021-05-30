@@ -48,15 +48,12 @@
   <ItemGroup>
     <Compile Include="Ball.cs" />
     <Compile Include="BallGenerator.cs" />
-    <Compile Include="BallPart.cs" />
     <Compile Include="BruteforceCollisionAlgorithm.cs" />
-    <Compile Include="Cli.cs" />
     <Compile Include="FileReader.cs" />
     <Compile Include="FileWriter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomExtensions.cs" />
-    <Compile Include="RecursiveAlgorithmMode.cs" />
     <Compile Include="RecursiveCollisionAlgorithm.cs" />
   </ItemGroup>
   <ItemGroup>
