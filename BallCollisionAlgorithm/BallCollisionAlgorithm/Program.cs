@@ -340,7 +340,7 @@ namespace BallCollisionAlgorithm
                     .Select(pair => $"({pair.Item1}) - ({pair.Item2}) [{pair.Item1.DistanceTo(pair.Item2)}]");
 
                 var resultFilePath = testFilePath.Insert(testFilePath.Length - 4, suffix);
-                File.WriteAllLines(resultFilePath, new string[] { $"Ball count: {numberOfBalls}, collision time: {results.Count}, runtime: {runtime}" });
+                File.WriteAllLines(resultFilePath, new string[] { $"Ball count: {numberOfBalls}, collision count: {results.Count}, runtime: {runtime}ms" });
                 File.AppendAllLines(resultFilePath, resultAllLines);
                 Console.WriteLine($"Results written to {resultFilePath}.");
             }
