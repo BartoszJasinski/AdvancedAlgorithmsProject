@@ -312,7 +312,7 @@ namespace BallCollisionAlgorithm
             Console.WriteLine($"{generateTestFile}. Generate new test file");
             Console.WriteLine($"{solveBruteforce}. Solve using brutefoce algorithm");
             Console.WriteLine($"{solveRecursive}. Solve using recursive algorithm");
-            Console.WriteLine($"{findTestFiles}. Find all .txt files in the current directory and solve them using both algorithms");
+            Console.WriteLine($"{findTestFiles}. Find all test files in the current directory and solve them using both algorithms");
             Console.WriteLine($"{exit}. Exit the program");
             var options = new List<int>() { generateTestFile, solveBruteforce, solveRecursive, findTestFiles, exit };
             while (true)
