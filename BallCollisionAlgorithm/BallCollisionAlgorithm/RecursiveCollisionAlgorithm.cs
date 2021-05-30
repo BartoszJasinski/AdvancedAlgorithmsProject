@@ -23,44 +23,65 @@ namespace BallCollisionAlgorithm
             var R = orderedBalls.GetRange(orderedBalls.Count / 2, orderedBalls.Count - L.Count);
             collisions.AddRange(Solve(L));
             collisions.AddRange(Solve(R));
-
-            var ballsPrim = orderedBalls.Where(b => Math.Abs(b.GetByAxis(widestAxis) - L.Last().GetByAxis(widestAxis)) <= 2).ToList();
-            if(ballsPrim.Count <= 1)
+            var middleBall = L.Last();
+            var leftIndex = L.FindIndex(b => middleBall.GetByAxis(widestAxis) - b.GetByAxis(widestAxis) <= 2);
+            if(leftIndex != -1)
             {
-                return collisions;
+                L = L.GetRange(leftIndex, L.Count - leftIndex);
+            }
+            else
+            {
+                L.Clear();
             }
 
-            widestAxis = GetWidestRangeAxis(ballsPrim, usedAxises, axisCheck);
-            usedAxises.Add(widestAxis);
+            var rightIndex = R.FindLastIndex(b => b.GetByAxis(widestAxis) - middleBall.GetByAxis(widestAxis) <= 2);
+            if(rightIndex != -1)
+            {
+                R = R.GetRange(0, rightIndex + 1);
+            }
+            else
+            {
+                R.Clear();
+            }    
 
-            var orderedBallsPrim = ballsPrim.OrderBy(b => b.GetByAxis(widestAxis)).ToList();
-            var LPrim = orderedBallsPrim.GetRange(0, orderedBallsPrim.Count / 2);
-            var RPrim = orderedBallsPrim.GetRange(orderedBallsPrim.Count / 2, orderedBallsPrim.Count - LPrim.Count);
+
+            //var ballsPrim = orderedBalls.Where(b => Math.Abs(b.GetByAxis(widestAxis) - L.Last().GetByAxis(widestAxis)) <= 2).ToList();
+            //if(ballsPrim.Count <= 1)
+            //{
+            //    return collisions;
+            //}
+
+            //widestAxis = GetWidestRangeAxis(ballsPrim, usedAxises, axisCheck);
+            //usedAxises.Add(widestAxis);
+
+            //var orderedBallsPrim = ballsPrim.OrderBy(b => b.GetByAxis(widestAxis)).ToList();
+            //var LPrim = orderedBallsPrim.GetRange(0, orderedBallsPrim.Count / 2);
+            //var RPrim = orderedBallsPrim.GetRange(orderedBallsPrim.Count / 2, orderedBallsPrim.Count - LPrim.Count);
             // The tricky part, if uncommented the duplicates will happen
             //collisions.AddRange(Solve(L));
             //collisions.AddRange(Solve(R));
 
-            var ballsBis = orderedBallsPrim.Where(b => Math.Abs(b.GetByAxis(widestAxis) - LPrim.Last().GetByAxis(widestAxis)) <= 2).ToList();
-            if (ballsBis.Count <= 1)
-            {
-                return collisions;
-            }
+            //var ballsBis = orderedBallsPrim.Where(b => Math.Abs(b.GetByAxis(widestAxis) - LPrim.Last().GetByAxis(widestAxis)) <= 2).ToList();
+            //if (ballsBis.Count <= 1)
+            //{
+            //    return collisions;
+            //}
 
-            string axis;
-            if (!usedAxises.Contains("X"))
-            {
-                axis = "X";
-            }
-            else if (!usedAxises.Contains("Y"))
-            {
-                axis = "Y";
-            }
-            else
-            {
-                axis = "Z";
-            }
+            //string axis;
+            //if (!usedAxises.Contains("X"))
+            //{
+            //    axis = "X";
+            //}
+            //else if (!usedAxises.Contains("Y"))
+            //{
+            //    axis = "Y";
+            //}
+            //else
+            //{
+            //    axis = "Z";
+            //}
 
-            orderedBallsPrim = ballsBis.OrderBy(b => b.GetByAxis(axis)).ToList();
+            //orderedBallsPrim = ballsBis.OrderBy(b => b.GetByAxis(axis)).ToList();
             Ball ball1;
             Ball ball2;
 
@@ -177,6 +198,5 @@ namespace BallCollisionAlgorithm
                 return orderedRanges[2].axis;
             }
         }
-
     }
 }
