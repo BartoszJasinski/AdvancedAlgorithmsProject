@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 
 namespace BallCollisionAlgorithm
 {
- 	public class Ball
+    public class Ball
     {
         public Ball(double x, double y, double z)
         {
@@ -37,7 +34,7 @@ namespace BallCollisionAlgorithm
         public double GetByAxis(string axisName)
         {
             var axisUpper = axisName.ToUpper();
-            switch(axisUpper)
+            switch (axisUpper)
             {
                 case "X":
                     return X;
